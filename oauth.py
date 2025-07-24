@@ -7,7 +7,7 @@ def get_user_email():
 
     client_id = st.secrets["google"]["client_id"]
     client_secret = st.secrets["google"]["client_secret"]
-    redirect_uri = st.secrets.get("google", {}).get("redirect_uri", st.request.url)
+    redirect_uri = st.secrets["google"].get("redirect_uri", "http://localhost:8501")
 
     code = st.experimental_get_query_params().get("code", [None])[0]
 
