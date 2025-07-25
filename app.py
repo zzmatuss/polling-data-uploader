@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import date
-from uploader import upload_data
+from bigquery_utils import upload_to_bigquery
 from validator import validate_input
 
 st.set_page_config(page_title="Polling Data Uploader v1.1", layout="centered")
@@ -56,5 +56,5 @@ if submitted:
             st.write(f"- {error}")
     else:
         st.success("Validation passed. Uploading data...")
-        upload_data(validated_data)
+        upload_to_bigquery(validated_data)
         st.success("✅ Data uploaded successfully!")
