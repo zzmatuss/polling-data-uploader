@@ -1,31 +1,10 @@
-# Streamlit BigQuery Uploader
+# Polling Data Uploader v1.1
 
-A secure Streamlit app for uploading polling data directly to BigQuery, authenticated via Google OAuth.
+A Streamlit app for uploading polling data using a structured input form instead of CSV files.
 
 ## Features
 
-- Google OAuth login
-- Upload polling data via CSV
-- Filter by "ok" flag
-- Send data to BigQuery
-- Streamlit Cloud compatible
-
-## Setup
-
-1. Create a Google Cloud project with OAuth2 and BigQuery enabled
-2. Set up OAuth client (use your Streamlit app URL as redirect URI)
-3. Add credentials to Streamlit Cloud secrets
-
-## Secrets (Streamlit Cloud format)
-
-```
-[google]
-client_id = "YOUR_GOOGLE_CLIENT_ID"
-client_secret = "YOUR_GOOGLE_CLIENT_SECRET"
-
-[bigquery]
-project_id = "myfirstproject-271018"
-dataset = "opinion_model_svk"
-table = "elections_2027"
-credentials = """{ ... }"""  # Your GCP service account key
-```
+- Manual input of polling agency, sponsor, and date range
+- Predefined segments with editable values and upload flags
+- Validation of percentage and participation formats
+- Ready for integration with BigQuery or CSV export
