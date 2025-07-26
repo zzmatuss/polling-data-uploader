@@ -33,19 +33,19 @@ with st.form("poll_form"):
 
     st.subheader("Segments")
     segments = {
-        "sample": "1004",
-        "smer–ssd": "19.8%",
+        "sample": "1000",
+        "smer–ssd": "19.4%",
         "participation": "0.689%",
-        "ps": "24.1%",
-        "hlas-sd": "12.5%",
-        "rep": "5.7%",
-        "kdh": "6.9%",
-        "sas": "6.4%",
-        "d": "4.6%",
-        "as": "3.1%",
-        "kú+sk+zľ": "6.0%",
-        "sns": "4.1%",
-        "sr": "2.9%",
+        "ps": "22.1%",
+        "hlas-sd": "12.4%",
+        "rep": "8.0%",
+        "kdh": "6.6%",
+        "sas": "7.6%",
+        "d": "4.1%",
+        "as": "3.5%",
+        "kú+sk+zľ": "8.3%",
+        "sns": "4.2%",
+        "sr": "2.6%",
     }
 
     segment_inputs = {}
