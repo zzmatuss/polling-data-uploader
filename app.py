@@ -49,10 +49,8 @@ with st.form("poll_form"):
 
 if submitted:
     st.subheader("🔍 Validation Results")
-    st.write("Payload to upload:")
-    st.json(validated_data)
-
     validated_data, errors = validate_input(agency, paid_by, start_date, end_date, segment_inputs)
+
     if errors:
         st.error("Fix the following errors before uploading:")
         for error in errors:
@@ -64,4 +62,5 @@ if submitted:
             st.success(f"✅ Data uploaded successfully!\n{message}")
         else:
             st.error(f"❌ Upload failed:\n{message}")
+
 
