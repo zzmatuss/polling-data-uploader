@@ -62,21 +62,21 @@ with st.form("poll_form"):
     submitted = st.form_submit_button("Upload")
     
 
-if submitted:
-    st.subheader("🔍 Validation Results")
-    validated_data, errors = validate_input(agency, paid_by, start_date, end_date, segment_inputs)
-    if errors:
-        st.error("Fix the following errors before uploading:")
-        for error in errors:
-            st.write(f"- {error}")
-    else:
-        st.success("Validation passed. Uploading data...")
-        upload_row = prepare_for_upload(validated_data)
-        success, message = upload_to_bigquery([upload_row])
-        if success:
-            st.success("✅ Data uploaded successfully!")
+    if submitted:
+        st.subheader("🔍 Validation Results")
+        validated_data, errors = validate_input(agency, paid_by, start_date, end_date, segment_inputs)
+        if errors:
+            st.error("Fix the following errors before uploading:")
+            for error in errors:
+                st.write(f"- {error}")
         else:
-            st.error(f"❌ Upload failed: {message}")
+            st.success("Validation passed. Uploading data...")
+            upload_row = prepare_for_upload(validated_data)
+            success, message = upload_to_bigquery([upload_row])
+            if success:
+                st.success("✅ Data uploaded successfully!")
+            else:
+                st.error(f"❌ Upload failed: {message}")
 
 
 
