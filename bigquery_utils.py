@@ -11,5 +11,6 @@ def upload_to_bigquery(rows):
     errors = client.insert_rows_json(table_id, rows)
 
     if errors:
-        return False, errors
-    return True, "Upload successful"
+        return False, f"Errors while inserting rows: {errors}"
+    else:
+        return True, f"Inserted {len(rows)} row(s) into {table_id}"
