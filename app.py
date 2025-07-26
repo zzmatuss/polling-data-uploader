@@ -56,5 +56,5 @@ if submitted:
             st.write(f"- {error}")
     else:
         st.success("Validation passed. Uploading data...")
-        upload_to_bigquery(validated_data)
+        upload_to_bigquery([validated_data])
         st.success("✅ Data uploaded successfully!")
