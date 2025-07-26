@@ -60,6 +60,7 @@ with st.form("poll_form"):
         segment_inputs[seg_name] = {"value": seg_value, "flag": seg_flag}
 
     submitted = st.form_submit_button("Upload")
+    
 
 if submitted:
     st.subheader("🔍 Validation Results")
