@@ -7,6 +7,20 @@ st.set_page_config(page_title="Polling Data Uploader v1.1", layout="centered")
 
 st.title("🗳️ Polling Data Uploader v1.1")
 
+def prepare_for_upload(data):
+    segments = data.pop("segments", {})
+    segment_names = []
+    segment_values = []
+
+    for k, v in segments.items():
+        segment_names.append(k)
+        segment_values.append(str(v))  # keep as string, with % if you want
+
+    data["segments"] = ",".join(segment_names)
+    data["values"] = ",".join(segment_values)
+
+    return data
+
 with st.form("poll_form"):
     st.subheader("General Info")
     agency = st.text_input("Agency")
@@ -50,17 +64,18 @@ with st.form("poll_form"):
 if submitted:
     st.subheader("🔍 Validation Results")
     validated_data, errors = validate_input(agency, paid_by, start_date, end_date, segment_inputs)
-
     if errors:
         st.error("Fix the following errors before uploading:")
         for error in errors:
             st.write(f"- {error}")
     else:
         st.success("Validation passed. Uploading data...")
-        success, message = upload_to_bigquery([validated_data])
+        upload_row = prepare_for_upload(validated_data)
+        success, message = upload_to_bigquery([upload_row])
         if success:
-            st.success(f"✅ Data uploaded successfully!\n{message}")
+            st.success("✅ Data uploaded successfully!")
         else:
-            st.error(f"❌ Upload failed:\n{message}")
+            st.error(f"❌ Upload failed: {message}")
+
 
 
